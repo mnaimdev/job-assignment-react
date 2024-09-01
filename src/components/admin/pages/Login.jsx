@@ -15,11 +15,7 @@ const Login = () => {
             .email('Invalid email address')
             .required('The email field is required.'),
         password: Yup.string()
-            .required('The password field is required')
-            .matches(
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                'Password must contain at least one uppercase letter, one lowercase letter, one number, one special character, and be at least 8 characters long'
-            ),
+            .required('The password field is required'),
     });
 
     const handleSubmit = (values, { setSubmitting }) => {

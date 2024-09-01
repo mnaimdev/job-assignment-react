@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
@@ -22,24 +23,21 @@ const Sidebar = () => {
             <li className="menu-header">RBAC</li>
             <li className="dropdown">
               <a href="#" className="nav-link has-dropdown">
-                <i className="far fa-file-alt"></i> <span>Forms</span>
+                <i className="far fa-file-alt"></i> <span>Role & Permission</span>
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="nav-link" href="forms-advanced-form.html">
-                    Advanced Form
-                  </a>
+                  <NavLink className="nav-link" to="/role">
+                    Role
+                  </NavLink>
                 </li>
+
                 <li>
                   <a className="nav-link" href="forms-editor.html">
-                    Editor
+                    Permission
                   </a>
                 </li>
-                <li>
-                  <a className="nav-link" href="forms-validation.html">
-                    Validation
-                  </a>
-                </li>
+                
               </ul>
             </li>
             
