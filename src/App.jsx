@@ -5,6 +5,7 @@ import Layout from "./components/admin/layouts/Layout";
 import Home from "./components/admin/pages/Home";
 import Login from "./components/admin/pages/Login";
 import Register from "./components/admin/pages/Register";
+import Permission from "./components/admin/permission/Permission";
 import PermissionCreate from "./components/admin/permission/PermissionCreate";
 import PermissionEdit from "./components/admin/permission/PermissionEdit";
 import Role from "./components/admin/role/Role";
@@ -40,7 +41,7 @@ const App = () => {
             </Layout>}></Route>
 
             <Route path="/permission" element={<Layout>
-              <Role />
+              <Permission />
             </Layout>}></Route>
 
             <Route path="/permission/create" element={<Layout>

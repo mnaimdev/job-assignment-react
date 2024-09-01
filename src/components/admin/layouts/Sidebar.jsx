@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
@@ -27,15 +27,15 @@ const Sidebar = () => {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <NavLink className="nav-link" to="/role">
+                  <Link className="nav-link" to="/role">
                     Role
-                  </NavLink>
+                  </Link>
                 </li>
 
                 <li>
-                  <a className="nav-link" href="forms-editor.html">
+                  <Link className="nav-link" to="/permission">
                     Permission
-                  </a>
+                  </Link>
                 </li>
                 
               </ul>
