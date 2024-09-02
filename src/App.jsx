@@ -8,6 +8,10 @@ import Layout from "./components/admin/layouts/Layout";
 import Home from "./components/admin/pages/Home";
 import Login from "./components/admin/pages/Login";
 import Register from "./components/admin/pages/Register";
+import PermissionUnderRole from "./components/admin/permission under role/PermissionUnderRole";
+import PermissionUnderRoleCreate from "./components/admin/permission under role/PermissionUnderRoleCreate";
+import PermissionUnderRoleDelete from "./components/admin/permission under role/PermissionUnderRoleDelete";
+import PermissionUnderRoleEdit from "./components/admin/permission under role/PermissionUnderRoleEdit";
 import Permission from "./components/admin/permission/Permission";
 import PermissionCreate from "./components/admin/permission/PermissionCreate";
 import PermissionEdit from "./components/admin/permission/PermissionEdit";
@@ -54,6 +58,23 @@ const App = () => {
             <Route path="/permission/edit/:id" element={<Layout>
               <PermissionEdit />
             </Layout>}></Route>
+
+            <Route path="/permission_under_role" element={<Layout>
+              <PermissionUnderRole />
+            </Layout>}></Route>
+
+            <Route path="/permission_under_role/create" element={<Layout>
+              <PermissionUnderRoleCreate />
+            </Layout>}></Route>
+
+            <Route path="/permission_under_role/edit/:id" element={<Layout>
+              <PermissionUnderRoleEdit />
+            </Layout>}></Route>
+
+            <Route path="/permission_under_role/delete/:id" element={<Layout>
+              <PermissionUnderRoleDelete />
+            </Layout>}></Route>
+
 
             <Route path="/assign_role" element={<Layout>
               <AssignRole />
