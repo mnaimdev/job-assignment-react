@@ -23,7 +23,7 @@ const Sidebar = () => {
             <li className="menu-header">RBAC</li>
             <li className="dropdown">
               <a href="#" className="nav-link has-dropdown">
-                <i className="far fa-file-alt"></i> <span>Role & Permission</span>
+                <i className="fa fa-users"></i> <span>Role & Permission</span>
               </a>
               <ul className="dropdown-menu">
                 <li>
@@ -50,6 +50,25 @@ const Sidebar = () => {
                   </Link>
                 </li>
                 
+              </ul>
+            </li>
+
+            <li className="dropdown">
+              <a href="#" className="nav-link has-dropdown">
+                <i className="fa fa-user"></i> <span>User Management</span>
+              </a>
+              <ul className="dropdown-menu">
+                <li>
+                  <Link className="nav-link" to="/user">
+                    User
+                  </Link>
+                </li>
+
+                <li>
+                  <Link className="nav-link" to="/auth/user">
+                    Profile Info
+                  </Link>
+                </li>
               </ul>
             </li>
             

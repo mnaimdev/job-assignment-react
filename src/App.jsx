@@ -17,6 +17,10 @@ import PermissionEdit from "./components/admin/permission/PermissionEdit";
 import Role from "./components/admin/role/Role";
 import RoleCreate from "./components/admin/role/RoleCreate";
 import RoleEdit from "./components/admin/role/RoleEdit";
+import Profile from "./components/admin/user/Profile";
+import User from "./components/admin/user/User";
+import UserCreate from "./components/admin/user/UserCreate";
+import UserEdit from "./components/admin/user/UserEdit";
 
 const App = () => {
   return (
@@ -80,6 +84,22 @@ const App = () => {
 
             <Route path="/assign_role/edit/:id" element={<Layout>
               <AssignRoleEdit />
+            </Layout>}></Route>
+
+            <Route path="/user" element={<Layout>
+              <User />
+            </Layout>}></Route>
+
+            <Route path="/user/create" element={<Layout>
+              <UserCreate />
+            </Layout>}></Route>
+
+            <Route path="/user/edit/:id" element={<Layout>
+              <UserEdit />
+            </Layout>}></Route>
+
+            <Route path="/auth/user" element={<Layout>
+              <Profile />
             </Layout>}></Route>
 
             <Route path="/login" element={<Login />}></Route>

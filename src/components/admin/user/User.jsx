@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const Role = () => {
+const User = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`/role`)
+        axios.get(`/user`)
             .then(function (response) {
                 console.log(response);
 
@@ -30,17 +30,17 @@ const Role = () => {
 
     }, []);
 
-    const deleteRole = (id) => {
-        console.log('Attempting to delete:', id); // Log the ID
-        axios.delete(`/role/delete/${id}`)
+    const deleteUser = (id) => {
+        console.log('Attempting to delete:', id);
+        axios.delete(`/user/delete/${id}`)
             .then(function (response) {
-                console.log('Delete response:', response); // Log the response
+                console.log('Delete response:', response);
                 if (response.data.status === 'success') {
                     toast.success(response.data.message);
 
                     setData(prevData => {
                         const newData = prevData.filter(item => item.id !== id);
-                        console.log('Updated Data:', newData); // Log the updated data
+                        console.log('Updated Data:', newData);
                         return newData;
                     });
                 }
@@ -60,12 +60,12 @@ const Role = () => {
     return (
         <>
             <div className="container">
-                <Link to="/role/create" className="btn btn-primary btn-sm my-3">Create New</Link>
+                <Link to="/user/create" className="btn btn-primary btn-sm my-3">Create New</Link>
                 <div className="row">
                     <div className="col-lg-12 col-sm-12 col-md-12">
                         <div className="card">
                             <div className="card-header">
-                                <h3 className="text-center m-auto">Role List</h3>
+                                <h3 className="text-center m-auto">User List</h3>
                             </div>
                             <div className="card-body">
                                 <table className="table table-bordered">
@@ -73,6 +73,7 @@ const Role = () => {
                                         <tr>
                                             <th>SL</th>
                                             <th>Name</th>
+                                            <th>Email</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -82,9 +83,10 @@ const Role = () => {
                                                 <tr key={item.id}>
                                                     <td>{index + 1}</td>
                                                     <td>{item.name}</td>
+                                                    <td>{item.email}</td>
                                                     <td>
-                                                        <Link to={`/role/edit/${item.id}`} className="btn btn-primary btn-sm">Edit</Link>
-                                                        <button className="btn btn-danger btn-sm mx-1" onClick={() => deleteRole(item.id)}>Delete</button>
+                                                        <Link to={`/user/edit/${item.id}`} className="btn btn-primary btn-sm">Edit</Link>
+                                                        <button className="btn btn-danger btn-sm mx-1" onClick={() => deleteUser(item.id)}>Delete</button>
                                                     </td>
                                                 </tr>
                                             ))
@@ -100,4 +102,4 @@ const Role = () => {
     );
 };
 
-export default Role;
+export default User;
