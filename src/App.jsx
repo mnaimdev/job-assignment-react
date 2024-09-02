@@ -1,5 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AssignRole from "./components/admin/assign role/AssignRole";
+import AssignRoleCreate from "./components/admin/assign role/AssignRoleCreate";
+import AssignRoleEdit from "./components/admin/assign role/AssignRoleEdit";
 import Dashboard from "./components/admin/layouts/Dashboard";
 import Layout from "./components/admin/layouts/Layout";
 import Home from "./components/admin/pages/Home";
@@ -50,6 +53,18 @@ const App = () => {
 
             <Route path="/permission/edit/:id" element={<Layout>
               <PermissionEdit />
+            </Layout>}></Route>
+
+            <Route path="/assign_role" element={<Layout>
+              <AssignRole />
+            </Layout>}></Route>
+
+            <Route path="/assign_role/create" element={<Layout>
+              <AssignRoleCreate />
+            </Layout>}></Route>
+
+            <Route path="/assign_role/edit/:id" element={<Layout>
+              <AssignRoleEdit />
             </Layout>}></Route>
 
             <Route path="/login" element={<Login />}></Route>

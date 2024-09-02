@@ -37,6 +37,18 @@ const Sidebar = () => {
                     Permission
                   </Link>
                 </li>
+
+                <li>
+                  <Link className="nav-link" to="/permission_under_role">
+                    Permission Under Role
+                  </Link>
+                </li>
+
+                <li>
+                  <Link className="nav-link" to="/assign_role">
+                    Assign Role
+                  </Link>
+                </li>
                 
               </ul>
             </li>
