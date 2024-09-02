@@ -65,7 +65,7 @@ const Sidebar = () => {
                 </li>
 
                 <li>
-                  <Link className="nav-link" to="/auth/user">
+                  <Link className="nav-link" to="/profile">
                     Profile Info
                   </Link>
                 </li>

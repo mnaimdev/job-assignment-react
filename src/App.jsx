@@ -98,7 +98,7 @@ const App = () => {
               <UserEdit />
             </Layout>}></Route>
 
-            <Route path="/auth/user" element={<Layout>
+            <Route path="/profile" element={<Layout>
               <Profile />
             </Layout>}></Route>
 
