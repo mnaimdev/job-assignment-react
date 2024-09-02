@@ -33,6 +33,30 @@ const AssignRole = () => {
         });
     }, []);
 
+    function deleteAssignRole(id) {
+        axios.delete(`/assign_role/delete/${id}`)
+            .then(function (response) {
+                if (response.data.status === 'success') {
+                    toast.success(response.data.message);
+    
+                    setData(prevData => prevData.map(item => 
+                        item.id === id ? { ...item, role: "No role assigned" } : item
+                    ));
+                }
+    
+                if (response.data.status === 'error') {
+                    const errorMessage = response.data.message;
+                    toast.error(errorMessage);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+                let errors = error.response?.data?.errors || "An error occurred";
+                toast.error(errors);
+            });
+    }
+    
+
     return (
         <>
             <div className="container">
@@ -61,7 +85,9 @@ const AssignRole = () => {
                                                     <td>{item.name}</td>
                                                     <td>{item.role}</td>
                                                     <td>
-                                                        <Link to={`/assign_role/edit/${item.id}`} className="btn btn-primary">Edit</Link>
+                                                        <Link to={`/assign_role/edit/${item.id}`} className="btn btn-primary btn-sm">Edit</Link>
+
+                                                        <button onClick={() => deleteAssignRole(item.id)} className="btn btn-danger mx-1 btn-sm">Edit</button>
                                                     </td>
                                                 </tr>
                                             ))
