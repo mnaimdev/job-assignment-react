@@ -7,6 +7,25 @@ const PermissionUnderRole = () => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
 
+  const [permissions, setPermissions] = useState([]);
+
+  const hasPermission = (permissionToCheck) => {
+    return permissions.includes(permissionToCheck);
+  };
+
+  useEffect(() => {
+    const fetchPermissions = async () => {
+      try {
+        const response = await axios.get("/permission/user");
+        setPermissions(response.data.data || []);
+      } catch (error) {
+        console.error("Error fetching user permissions:", error);
+      }
+    };
+
+    fetchPermissions();
+  }, []);
+
   useEffect(() => {
     axios
       .get(`/permission_under_role`)
@@ -39,38 +58,44 @@ const PermissionUnderRole = () => {
   }, []);
 
   function deletePermissionUnderRole(id) {
-    axios.delete(`/permission_under_role/delete/${id}`)
-        .then(function (response) {
-            if (response.data.status === 'success') {
-                toast.success(response.data.message);
+    axios
+      .delete(`/permission_under_role/delete/${id}`)
+      .then(function (response) {
+        if (response.data.status === "success") {
+          toast.success(response.data.message);
 
-                // Update the permissions list of the specific role by setting it to an empty string
-                setData(prevData => prevData.map(item => 
-                    item.id === id ? { ...item, permissions: "" } : item
-                ));
-            }
+          // Update the permissions list of the specific role by setting it to an empty string
+          setData((prevData) =>
+            prevData.map((item) =>
+              item.id === id ? { ...item, permissions: "" } : item
+            )
+          );
+        }
 
-            if (response.data.status === 'error') {
-                const errorMessage = response.data.message;
-                toast.error(errorMessage);
-            }
-        })
-        .catch(function (error) {
-            console.log(error);
-            let errors = error.response?.data?.errors || "An error occurred";
-            toast.error(errors);
-        });
-}
+        if (response.data.status === "error") {
+          const errorMessage = response.data.message;
+          toast.error(errorMessage);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+        let errors = error.response?.data?.errors || "An error occurred";
+        toast.error(errors);
+      });
+  }
 
   return (
     <>
       <div className="container">
-        <Link
-          to="/permission_under_role/create"
-          className="btn btn-primary btn-sm my-3"
-        >
-          Create New
-        </Link>
+        {hasPermission("create_permission_under_role") && (
+          <Link
+            to="/permission_under_role/create"
+            className="btn btn-primary btn-sm my-3"
+          >
+            Create New
+          </Link>
+        )}
+
         <div className="row">
           <div className="col-lg-12 col-sm-12 col-md-12">
             <div className="card">
@@ -96,19 +121,23 @@ const PermissionUnderRole = () => {
                         <td>{item.name}</td>
                         <td>{item.permissions}</td>
                         <td>
-                          <Link
-                            to={`/permission_under_role/edit/${item.id}`}
-                            className="btn btn-primary btn-sm"
-                          >
-                            Edit
-                          </Link>
+                          {hasPermission("edit_permission_under_role") && (
+                            <Link
+                              to={`/permission_under_role/edit/${item.id}`}
+                              className="btn btn-primary btn-sm"
+                            >
+                              Edit
+                            </Link>
+                          )}
 
-                          <button
-                            className="btn btn-danger btn-sm mx-1"
-                            onClick={() => deletePermissionUnderRole(item.id)}
-                          >
-                            Delete
-                          </button>
+                          {hasPermission("delete_permission_under_role") && (
+                            <button
+                              className="btn btn-danger btn-sm mx-1"
+                              onClick={() => deletePermissionUnderRole(item.id)}
+                            >
+                              Delete
+                            </button>
+                          )}
                         </td>
                       </tr>
                     ))}

@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const UserProfile = () => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Fetch the currently logged-in user's details
@@ -27,6 +29,28 @@ const UserProfile = () => {
             });
     }, []);
 
+    const logoutUser = () => {
+        axios
+        .post(`/logout`)
+        .then(function (response) {
+          if (response.data.status === "success") {
+            toast.success(response.data.message);
+  
+           navigate('/');
+          }
+  
+          if (response.data.status === "error") {
+            const errorMessage = response.data.message;
+            toast.error(errorMessage);
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+          let errors = error.response?.data?.errors || "An error occurred";
+          toast.error(errors);
+        });
+    }
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -44,6 +68,7 @@ const UserProfile = () => {
                                 <>
                                     <p><strong>Name:</strong> {user.name}</p>
                                     <p><strong>Email:</strong> {user.email}</p>
+                                    <button className='btn btn-sm btn-dark' onClick={() => logoutUser()}>Logout</button>
                                 </>
                             ) : (
                                 <p>No user details available.</p>

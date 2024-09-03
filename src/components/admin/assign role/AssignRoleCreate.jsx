@@ -13,7 +13,7 @@ const AssignRoleCreate = () => {
   // Fetch users and roles on component mount
   useEffect(() => {
     axios
-      .get("/user")
+      .get("/user/all")
       .then((response) => {
         setUsers(response.data.data);
       })

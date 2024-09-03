@@ -18,7 +18,7 @@ const AssignRoleEdit = () => {
   // Fetch users, roles, and current assignment on component mount
   useEffect(() => {
     axios
-      .get("/user")
+      .get("/user/all")
       .then((response) => {
         setUsers(response.data.data);
       })
