@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
   useEffect(() => {
     let token = localStorage.getItem("token");
 
-    if (!token) {
+    if (token == '') {
       navigate("/");
     }
   }, [navigate]);

@@ -21,6 +21,7 @@ import Profile from "./components/admin/user/Profile";
 import User from "./components/admin/user/User";
 import UserCreate from "./components/admin/user/UserCreate";
 import UserEdit from "./components/admin/user/UserEdit";
+import PageNotFound from "./components/PageNotFound";
 
 const App = () => {
   return (
@@ -105,6 +106,7 @@ const App = () => {
             <Route path="/login" element={<Login />}></Route>
             <Route path="/register" element={<Register />}></Route>
 
+            <Route path="*" element={<PageNotFound />}></Route>
         </Routes>
       </BrowserRouter>
     </>

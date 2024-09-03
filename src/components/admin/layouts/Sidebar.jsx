@@ -13,6 +13,8 @@ const Sidebar = () => {
     const fetchPermissions = async () => {
       try {
         const response = await axios.get("/permission/user");
+        console.log(response);
+        
         setPermissions(response.data.data || []);
       } catch (error) {
         console.error("Error fetching user permissions:", error);
